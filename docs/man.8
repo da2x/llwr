@@ -1,0 +1,51 @@
+.TH "llwr" "8" "2016-11-12" "Linux" "System Manager's Manual"
+.SH NAME 
+llwr \- low latency wireless required
+\"
+run a program with reduced wireless network latency
+.SH SYNOPSIS
+\fBllwr\fP \fBCOMMAND\fP [ \fIARG\fP... ]
+.SH DESCRIPTION
+Temporarily disables dynamic power savings in any supported wireless
+networking modules, runs \fBCOMMAND\fP, and turns power savings back on
+again when \fBCOMMAND\fP exits.
+\"
+Dynamic power saving will put any supported wireless communication
+modules to sleep when the system guesstimates that there isn't going to
+be any network traffic for a few milliseconds. This is absolutely
+desired for battery powered devices to reduce power consumption.
+.B llwr
+will disable dynamic power saving on all supported wireless modules for
+as long as
+.B COMMAND
+runs.
+\"
+.B llwr
+is useful when running programs -- such as games, stock trading, and
+distributed compilers -- that requires lower than normal network
+latency on devices where dynamic power saving is normally desired.
+\"
+If dynamic power save mode is disabled or unsupported, or even if there
+are no wireless communication devices present on the system, then
+\fIllwr\fP will leave it disabled and run 
+.B COMMAND
+anyway. Any
+.B ARG
+is passed on to
+.B COMMAND.
+.SH EXAMPLE
+.TP
+\fCllwr su www-data -c httpd -d\fR
+Start a web server daemon as another user.
+.TP
+\fCsudo llwr su peter -c steam\fR
+Let the user peter play Steam games with less lag.
+.TP
+\fCllwr sleep 2h &\fR
+Disable dynamic power saving for two hours.
+.SH BUGS
+GitHub Issue Tracker <https://github.com/da2x/llwr/issues>
+.SH SEE ALSO
+.BR iw (8)
+.SH AUTHOR
+Daniel Aleksandersen (https://www.daniel.priv.no/)
