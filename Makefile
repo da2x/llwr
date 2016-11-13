@@ -26,7 +26,7 @@ build: $(BUILDDIR)/$(SHSCRIPT)
 $(BUILDDIR)/$(SHSCRIPT): $(SRCDIR)/$(SHSCRIPT)
 	-mkdir -p $(BUILDDIR)
 	cp $(SRCDIR)/$(SHSCRIPT) $(BUILDDIR)/$(SHSCRIPT)
-    # Harden by replacing '/bin/env X' with absolute paths
+# Harden by replacing '/bin/env X' with absolute paths
 	sed -i -e 's:/bin/env bash:$(BASH_CMD):g' "$(BUILDDIR)/$(SHSCRIPT)"
 	sed -i -e 's:/bin/env cut:$(CUT_CMD):g' "$(BUILDDIR)/$(SHSCRIPT)"
 	sed -i -e 's:/bin/env grep:$(GREP_CMD):g' "$(BUILDDIR)/$(SHSCRIPT)"
