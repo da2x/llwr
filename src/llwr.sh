@@ -1,3 +1,9 @@
+#
+# Copyright © 2016–2017 Daniel Aleksandersen
+# SPDX-License-Identifier: MIT
+# License-Filename: LICENSE
+#
+
 #!/bin/env bash
 
 CUT_CMD="/bin/env cut"
